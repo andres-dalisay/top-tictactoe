@@ -119,42 +119,30 @@ const GameController = (function () {
         return true;
     }
 
-    function getPos() {
-        const posX = parseInt(prompt("Enter Row: "));
-        const posY = parseInt(prompt("Enter Column: "));
+    function playTurn(posX, posY) {
+        if (currentPlayer === playerTwo || currentPlayer === null) currentPlayer = playerOne;
+        else currentPlayer = playerTwo;
 
-        return [posX, posY];
-    }
-
-    function startGame() {
-        Gameboard.resetBoard();
-        let posX = null;
-        let posY = null;
-        while (!gameWon(posX, posY) && !boardFull()) {
-            if (currentPlayer === playerTwo || currentPlayer === null) currentPlayer = playerOne;
-            else currentPlayer = playerTwo;
-
-            posX = null;
-            posY = null;
-
-            while (!isValidMove(currentPlayer.playerNum, posX, posY)) {
-                [posX, posY] = getPos();
-            }
-
-            if (isValidMove(currentPlayer.playerNum, posX, posY)) {
-                placePiece(currentPlayer.playerNum, posX, posY);
-            } else {
-                console.log("Invalid");
-            }
-            console.log(Gameboard.displayBoard());
+        if (isValidMove(currentPlayer.playerNum, posX, posY)) {
+            placePiece(currentPlayer.playerNum, posX, posY);
+        } else {
+            document.querySelector(".game-text").textContent = "Invalid move!";
         }
+        console.log(Gameboard.displayBoard());
 
         if (gameWon(posX, posY)) {
             console.log(`Player ${currentPlayer.playerNum} wins!`);
-        } else {
+        } else if (boardFull()) {
             console.log("It's a stalemate!");
         }
     }
+
+    function setupGame() {
+        Gameboard.resetBoard();
+    }
+
+    return {setupGame, playTurn};
+})();
 
 const DisplayController = (function() {
     const container = document.querySelector(".grid-container");
@@ -175,3 +163,4 @@ const DisplayController = (function() {
 })();
 
 DisplayController.renderGrid();
+GameController.setupGame();
