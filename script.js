@@ -125,7 +125,6 @@ const GameController = (function () {
         } else {
             DisplayController.setGameText("Invalid move!");
         }
-        console.log(Gameboard.displayBoard());
 
         if (gameWon(posX, posY)) {
             DisplayController.setGameText(`Player ${currentPlayer.playerNum} wins!`);
