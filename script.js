@@ -92,3 +92,11 @@ const Gameboard = (function () {
 
     return {placePiece, getBoard, gameWon, displayBoard, boardFull};
 })();
+
+const Player = function (playerNum) {
+    const piece = (playerNum === 1) ? "O" : "X";
+    return {playerNum, piece};
+}
+
+const playerOne = Player(1);
+const playerTwo = Player(2);
