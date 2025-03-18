@@ -117,17 +117,33 @@ const GameController = (function () {
 
         return [posX, posY];
     }
+
+    function startGame() {
+        Gameboard.resetBoard();
+        let posX = -1;
+        let posY = -1;
+        while (!gameWon(posX, posY) && !boardFull()) {
+            if (currentPlayer === playerTwo || undefined) currentPlayer = playerOne;
+            else currentPlayer = playerTwo;
+
+            posX = -1;
+            posY = -1;
+
+            while (!isValidMove(currentPlayer.playerNum, posX, posY)) {
+                [posX, posY] = getPos();
+            }
+
+            if (isValidMove(currentPlayer.playerNum, posX, posY)) {
+                placePiece(currentPlayer.playerNum, posX, posY);
+            } else {
+                console.log("Invalid");
+            }
+            console.log(Gameboard.displayBoard());
+
         }
-        return false;
     }
 
-    return {placePiece, getBoard, gameWon, displayBoard, boardFull};
+    return {startGame};
 })();
 
-const Player = function (playerNum) {
-    const piece = (playerNum === 1) ? "O" : "X";
-    return {playerNum, piece};
-}
-
-const playerOne = Player(1);
-const playerTwo = Player(2);
+GameController.startGame();
