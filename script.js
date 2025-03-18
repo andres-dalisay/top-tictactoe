@@ -43,17 +43,17 @@ const GameController = (function () {
     function isValidMove(player, idxX, idxY) {
         if (idxX === null || idxY === null) return false; // for pre-input
         if (idxX < 0 || idxX > 2 || idxY < 0 || idxY > 2) {
-            document.querySelector(".sub-game-text").textContent = "Invalid input. Try Again.";
+            DisplayController.setSubGameText("Invalid input. Try Again.");
             return false;
         }
         if (player < 0 || player > 2) {
-            document.querySelector(".sub-game-text").textContent = "Invalid player.";
+            DisplayController.setSubGameText("Invalid player.");
             return false;
         }
         const board = Gameboard.getBoard();
         
         if (board[idxX][idxY] != 0) {
-            document.querySelector(".sub-game-text").textContent = "Spot already taken.";
+            DisplayController.setSubGameText("Spot already taken.");
             return false;
         }
         else return true; 
@@ -120,20 +120,24 @@ const GameController = (function () {
     }
 
     function playTurn(posX, posY) {
+        DisplayController.clearSubGameText();
+        
         if (currentPlayer === playerTwo || currentPlayer === null) currentPlayer = playerOne;
         else currentPlayer = playerTwo;
+
+        DisplayController.setGameText(`Player ${currentPlayer.playerNum}'s turn`)
 
         if (isValidMove(currentPlayer.playerNum, posX, posY)) {
             placePiece(currentPlayer.playerNum, posX, posY);
         } else {
-            document.querySelector(".game-text").textContent = "Invalid move!";
+            DisplayController.setGameText("Invalid move!");
         }
         console.log(Gameboard.displayBoard());
 
         if (gameWon(posX, posY)) {
-            console.log(`Player ${currentPlayer.playerNum} wins!`);
+            DisplayController.setGameText(`Player ${currentPlayer.playerNum} wins!`);
         } else if (boardFull()) {
-            console.log("It's a stalemate!");
+            DisplayController.setGameText("It's a stalemate!");
         }
     }
 
