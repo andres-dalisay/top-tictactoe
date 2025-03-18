@@ -148,6 +148,12 @@ const GameController = (function () {
             }
             console.log(Gameboard.displayBoard());
         }
+
+        if (gameWon(posX, posY)) {
+            console.log(`Player ${currentPlayer.playerNum} wins!`);
+        } else {
+            console.log("It's a stalemate!");
+        }
     }
 
     return {startGame};
