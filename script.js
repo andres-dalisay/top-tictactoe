@@ -111,10 +111,12 @@ const GameController = (function () {
         return true;
     }
 
-    function gameWon(lastX, lastY) {        
-        const piece = board[lastX][lastY];
-        if (horThree(lastX, lastY, piece) || verThree(lastX, lastY, piece) || diagThree(lastX, lastY, piece)) {
-            return true;
+    function getPos() {
+        const posX = parseInt(prompt("Enter Row: "));
+        const posY = parseInt(prompt("Enter Column: "));
+
+        return [posX, posY];
+    }
         }
         return false;
     }
