@@ -1,5 +1,3 @@
-
-
 const Gameboard = (function () {
     const board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
