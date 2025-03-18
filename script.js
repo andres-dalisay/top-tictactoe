@@ -215,6 +215,10 @@ const DisplayController = (function() {
 
     function switchToGameOverState() {
         restartBtn.style.display = "inline-block";
+        const cells = document.querySelectorAll(".cell");
+        cells.forEach((cell) => {
+            cell.style.pointerEvents = "none";
+        })
     }
 
     function setGameText(string) {
