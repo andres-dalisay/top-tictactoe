@@ -138,8 +138,10 @@ const GameController = (function () {
 
             if (gameWon(posX, posY)) {
                 DisplayController.setGameText(`${currentPlayer.getName()} wins!`);
+                DisplayController.switchToGameOverState();
             } else if (boardFull()) {
                 DisplayController.setGameText("It's a stalemate!");
+                DisplayController.switchToGameOverState();
             } else {
                 if (currentPlayer === playerTwo || currentPlayer === null) currentPlayer = playerOne;
                 else currentPlayer = playerTwo;
@@ -166,6 +168,7 @@ const DisplayController = (function() {
     const gameText = document.querySelector(".game-text");
     const subGameText = document.querySelector(".sub-game-text");
     const startGameBtn = document.querySelector(".start-game-btn");
+    const restartBtn = document.querySelector(".restart-btn");
 
     function renderGrid() {
         for (let i = 0; i < 3; i++) {
@@ -182,8 +185,7 @@ const DisplayController = (function() {
         }
     }
 
-    function setupMenu() {
-        container.style.display = "none";
+    function setupButtons() {
         startGameBtn.addEventListener("click", function() {
             const nameOne = document.querySelector("#player-one-name").value || null;
             const nameTwo = document.querySelector("#player-two-name").value || null;
@@ -192,10 +194,27 @@ const DisplayController = (function() {
             GameController.setupGame(nameOne, nameTwo);
             document.querySelector(".start-menu").style.display = "none";
         });
+
+        restartBtn.addEventListener("click", () => {
+            document.querySelector(".start-menu").style.display = "block";
+            clearGameText();
+            clearSubGameText();
+            container.textContent = "";
+            setupMenu();
+        })
+    }
+
+    function setupMenu() {
+        container.style.display = "none";
+        restartBtn.style.display = "none";
     }
 
     function placePieceUI(player, idxX, idxY) {
         document.querySelector(`.cell[data-x-pos="${idxX}"][data-y-pos="${idxY}"]`).textContent = player.piece;
+    }
+
+    function switchToGameOverState() {
+        restartBtn.style.display = "inline-block";
     }
 
     function setGameText(string) {
@@ -214,7 +233,8 @@ const DisplayController = (function() {
         subGameText.textContent = "";
     }
 
-    return {setupMenu, renderGrid, placePieceUI, setGameText, setSubGameText, clearSubGameText, clearGameText}
+    return {setupMenu, setupButtons, switchToGameOverState, renderGrid, placePieceUI, setGameText, setSubGameText, clearSubGameText, clearGameText}
 })();
 
+DisplayController.setupButtons();
 DisplayController.setupMenu();
