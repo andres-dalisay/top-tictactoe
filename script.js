@@ -101,7 +101,7 @@ const GameController = (function () {
     }
 
     function gameWon(lastX, lastY) {   
-        if (lastX === -1 && lastY === -1) return false;     
+        if (lastX === null && lastY === null) return false;     
         const piece = Gameboard.getBoard()[lastX][lastY];
         if (horThree(lastX, lastY, piece) || verThree(lastX, lastY, piece) || diagThree(lastX, lastY, piece)) {
             return true;
