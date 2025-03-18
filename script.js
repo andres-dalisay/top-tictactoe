@@ -15,7 +15,7 @@ const Gameboard = (function () {
             }
             console.log(string);
         });
-            }
+    }
 
     function placePiece (piece, cellX, cellY) {
         const idxX = cellX - 1;
@@ -23,13 +23,13 @@ const Gameboard = (function () {
 
         if (isValidMove(piece, idxX, idxY)) {
             board[idxX][idxY] = piece;
+            console.log(Gameboard.gameWon(idxX, idxY));
         } else {
             console.log("Invalid move.");
         }
     }
 
     function isValidMove(piece, idxX, idxY) {
-
         if (piece < 0 || piece > 2) return false;
 
         if (board[idxX][idxY] != 0) return false;
@@ -75,6 +75,15 @@ const Gameboard = (function () {
         return false;
     }
 
+    function boardFull() {
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board.length; j++) {
+                if (board[i][j] === 0) return false;
+            }
+        }
+        return true;
+    }
+
     function gameWon(lastX, lastY) {        
         const piece = board[lastX][lastY];
         if (horThree(lastX, lastY, piece) || verThree(lastX, lastY, piece) || diagThree(lastX, lastY, piece)) {
@@ -82,5 +91,6 @@ const Gameboard = (function () {
         }
         return false;
     }
-    return {placePiece, getBoard};
+
+    return {placePiece, getBoard, gameWon, displayBoard, boardFull};
 })();
