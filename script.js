@@ -119,12 +119,11 @@ const GameController = (function () {
 
     function playTurn(posX, posY) {
         DisplayController.clearSubGameText();
-
         if (!isValidMove(currentPlayer.playerNum, posX, posY)) {
             DisplayController.setGameText("Invalid move!");
         } else {
             placePiece(currentPlayer, posX, posY);
-            
+
             if (gameWon(posX, posY)) {
                 DisplayController.setGameText(`Player ${currentPlayer.playerNum} wins!`);
             } else if (boardFull()) {
