@@ -28,7 +28,7 @@ const Player = function (playerNum) {
 }
 
 const GameController = (function () {
-    let currentPlayer;
+    let currentPlayer = null;
 
     const playerOne = Player(1);
     const playerTwo = Player(2);
@@ -128,14 +128,14 @@ const GameController = (function () {
 
     function startGame() {
         Gameboard.resetBoard();
-        let posX = -1;
-        let posY = -1;
+        let posX = null;
+        let posY = null;
         while (!gameWon(posX, posY) && !boardFull()) {
-            if (currentPlayer === playerTwo || undefined) currentPlayer = playerOne;
+            if (currentPlayer === playerTwo || currentPlayer === null) currentPlayer = playerOne;
             else currentPlayer = playerTwo;
 
-            posX = -1;
-            posY = -1;
+            posX = null;
+            posY = null;
 
             while (!isValidMove(currentPlayer.playerNum, posX, posY)) {
                 [posX, posY] = getPos();
@@ -147,7 +147,6 @@ const GameController = (function () {
                 console.log("Invalid");
             }
             console.log(Gameboard.displayBoard());
-
         }
     }
 
