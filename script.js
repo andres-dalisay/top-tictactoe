@@ -41,13 +41,21 @@ const GameController = (function () {
     }
 
     function isValidMove(player, idxX, idxY) {
-        if (idxX < 0 || idxX > 2 || idxY < 0 || idxY > 2) return false;
-        if (player < 0 || player > 2) return false;
+        if (idxX === null || idxY === null) return false; // for pre-input
+        if (idxX < 0 || idxX > 2 || idxY < 0 || idxY > 2) {
+            console.log("Invalid input. Try Again.");
+            return false;
+        }
+        if (player < 0 || player > 2) {
+            console.log("Invalid player.");
+            return false;
+        }
         const board = Gameboard.getBoard();
         
-
-        if (board[idxX][idxY] != 0) return false;
-        else if (board[idxX][idxY] === player) return false;
+        if (board[idxX][idxY] != 0) {
+            console.log("Spot taken.");
+            return false;
+        }
         else return true; 
     }
 
