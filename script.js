@@ -150,6 +150,7 @@ const DisplayController = (function() {
     const container = document.querySelector(".grid-container");
     const gameText = document.querySelector(".game-text");
     const subGameText = document.querySelector(".sub-game-text");
+    const startGameBtn = document.querySelector(".start-game-btn");
 
     function renderGrid() {
         for (let i = 0; i < 3; i++) {
@@ -164,6 +165,16 @@ const DisplayController = (function() {
                 container.append(cell);
             }
         }
+    }
+
+    function setupMenu() {
+        container.style.display = "none";
+        startGameBtn.addEventListener("click", function() {
+            container.style.display = "grid";
+            renderGrid();
+            GameController.setupGame();
+            this.style.display = "none";
+        });
     }
 
     function placePieceUI(player, idxX, idxY) {
@@ -186,8 +197,7 @@ const DisplayController = (function() {
         subGameText.textContent = "";
     }
 
-    return {renderGrid, placePieceUI, setGameText, setSubGameText, clearSubGameText, clearGameText}
+    return {setupMenu, renderGrid, placePieceUI, setGameText, setSubGameText, clearSubGameText, clearGameText}
 })();
 
-DisplayController.renderGrid();
-GameController.setupGame();
+DisplayController.setupMenu();
