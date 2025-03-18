@@ -7,6 +7,16 @@ const Gameboard = (function () {
         return board;
     }
 
+    function displayBoard() {
+        board.forEach((row) => {
+            let string = ""
+            for (let i = 0; i < row.length; i++) {
+                string += row[i] + " ";
+            }
+            console.log(string);
+        });
+            }
+
     function placePiece (piece, cellX, cellY) {
         const idxX = cellX - 1;
         const idxY = cellY - 1;
