@@ -173,7 +173,7 @@ const DisplayController = (function() {
             container.style.display = "grid";
             renderGrid();
             GameController.setupGame();
-            this.style.display = "none";
+            document.querySelector(".start-menu").style.display = "none";
         });
     }
 
