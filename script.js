@@ -122,10 +122,6 @@ const GameController = (function () {
     function playTurn(posX, posY) {
         DisplayController.clearSubGameText();
         
-        if (currentPlayer === playerTwo || currentPlayer === null) currentPlayer = playerOne;
-        else currentPlayer = playerTwo;
-
-        DisplayController.setGameText(`Player ${currentPlayer.playerNum}'s turn`)
 
         if (isValidMove(currentPlayer.playerNum, posX, posY)) {
             placePiece(currentPlayer.playerNum, posX, posY);
@@ -138,11 +134,18 @@ const GameController = (function () {
             DisplayController.setGameText(`Player ${currentPlayer.playerNum} wins!`);
         } else if (boardFull()) {
             DisplayController.setGameText("It's a stalemate!");
+        } else {
+            if (currentPlayer === playerTwo || currentPlayer === null) currentPlayer = playerOne;
+            else currentPlayer = playerTwo;
+
+            DisplayController.setGameText(`Player ${currentPlayer.playerNum}'s turn`)
         }
     }
 
     function setupGame() {
         Gameboard.resetBoard();
+        currentPlayer = playerOne;
+        DisplayController.setGameText(`Player ${currentPlayer.playerNum}'s turn`)
     }
 
     return {setupGame, playTurn};
