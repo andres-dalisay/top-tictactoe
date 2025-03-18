@@ -170,7 +170,15 @@ const DisplayController = (function() {
         subGameText.textContent = string;
     }
 
-    return {renderGrid, setGameText, setSubGameText}
+    function clearGameText() {
+        gameText.textContent = "";
+    }
+
+    function clearSubGameText() {
+        subGameText.textContent = "";
+    }
+
+    return {renderGrid, setGameText, setSubGameText, clearSubGameText, clearGameText}
 })();
 
 DisplayController.renderGrid();
