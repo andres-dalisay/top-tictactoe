@@ -24,14 +24,26 @@ const Gameboard = (function () {
 
 const Player = function (playerNum) {
     const piece = (playerNum === 1) ? "O" : "X";
-    return {playerNum, piece};
+    let name = `Player ${playerNum}`;
+
+    function setName(string) {
+        if (string != null) {
+            name = string;
+        }
+    }
+
+    function getName() {
+        return name;
+    }
+
+    return {playerNum, setName, getName, piece};
 }
 
 const GameController = (function () {
     let currentPlayer = null;
 
-    const playerOne = Player(1);
-    const playerTwo = Player(2);
+    let playerOne = Player(1);
+    let playerTwo = Player(2);
 
     function placePiece (player, idxX, idxY) {
         Gameboard.getBoard()[idxX][idxY] = player.playerNum;
@@ -125,22 +137,25 @@ const GameController = (function () {
             placePiece(currentPlayer, posX, posY);
 
             if (gameWon(posX, posY)) {
-                DisplayController.setGameText(`Player ${currentPlayer.playerNum} wins!`);
+                DisplayController.setGameText(`${currentPlayer.getName()} wins!`);
             } else if (boardFull()) {
                 DisplayController.setGameText("It's a stalemate!");
             } else {
                 if (currentPlayer === playerTwo || currentPlayer === null) currentPlayer = playerOne;
                 else currentPlayer = playerTwo;
     
-                DisplayController.setGameText(`Player ${currentPlayer.playerNum}'s turn`)
+                DisplayController.setGameText(`${currentPlayer.getName()}'s turn`)
             }
         }
     }
 
-    function setupGame() {
+    function setupGame(nameOne, nameTwo) {
+        console.log(nameOne);
+        playerOne.setName(nameOne);
+        playerTwo.setName(nameTwo);
         Gameboard.resetBoard();
         currentPlayer = playerOne;
-        DisplayController.setGameText(`Player ${currentPlayer.playerNum}'s turn`)
+        DisplayController.setGameText(`${currentPlayer.getName()}'s turn`)
     }
 
     return {setupGame, playTurn};
@@ -170,9 +185,11 @@ const DisplayController = (function() {
     function setupMenu() {
         container.style.display = "none";
         startGameBtn.addEventListener("click", function() {
+            const nameOne = document.querySelector("#player-one-name").value || null;
+            const nameTwo = document.querySelector("#player-two-name").value || null;
             container.style.display = "grid";
             renderGrid();
-            GameController.setupGame();
+            GameController.setupGame(nameOne, nameTwo);
             document.querySelector(".start-menu").style.display = "none";
         });
     }
