@@ -156,7 +156,22 @@ const GameController = (function () {
         }
     }
 
-    return {startGame};
+const DisplayController = (function() {
+    const container = document.querySelector(".grid-container");
+    function renderGrid() {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                const cell = document.createElement("div");
+                cell.setAttribute("class", "cell");
+                cell.addEventListener("click", () => {
+                    GameController.playTurn(i, j);
+                })
+                container.append(cell);
+            }
+        }
+    }
+
+    return {renderGrid}
 })();
 
-GameController.startGame();
+DisplayController.renderGrid();
