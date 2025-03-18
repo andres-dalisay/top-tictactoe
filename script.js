@@ -1,8 +1,12 @@
 const Gameboard = (function () {
-    const board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    let board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
     function getBoard() {
         return board;
+    }
+
+    function resetBoard() {
+        board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     }
 
     function displayBoard() {
