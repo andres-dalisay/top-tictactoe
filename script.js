@@ -33,11 +33,9 @@ const GameController = (function () {
     const playerOne = Player(1);
     const playerTwo = Player(2);
 
-    function placePiece (player, cellX, cellY) {
-        const idxX = cellX;
-        const idxY = cellY;
-
-        Gameboard.getBoard()[idxX][idxY] = player;
+    function placePiece (player, idxX, idxY) {
+        Gameboard.getBoard()[idxX][idxY] = player.playerNum;
+        DisplayController.placePieceUI(player, idxX, idxY);
     }
 
     function isValidMove(player, idxX, idxY) {
@@ -122,9 +120,8 @@ const GameController = (function () {
     function playTurn(posX, posY) {
         DisplayController.clearSubGameText();
         
-
         if (isValidMove(currentPlayer.playerNum, posX, posY)) {
-            placePiece(currentPlayer.playerNum, posX, posY);
+            placePiece(currentPlayer, posX, posY);
         } else {
             DisplayController.setGameText("Invalid move!");
         }
@@ -161,12 +158,18 @@ const DisplayController = (function() {
             for (let j = 0; j < 3; j++) {
                 const cell = document.createElement("div");
                 cell.setAttribute("class", "cell");
+                cell.setAttribute("data-x-pos", i);
+                cell.setAttribute("data-y-pos", j);
                 cell.addEventListener("click", () => {
                     GameController.playTurn(i, j);
                 })
                 container.append(cell);
             }
         }
+    }
+
+    function placePieceUI(player, idxX, idxY) {
+        document.querySelector(`.cell[data-x-pos="${idxX}"][data-y-pos="${idxY}"]`).textContent = player.piece;
     }
 
     function setGameText(string) {
@@ -185,7 +188,7 @@ const DisplayController = (function() {
         subGameText.textContent = "";
     }
 
-    return {renderGrid, setGameText, setSubGameText, clearSubGameText, clearGameText}
+    return {renderGrid, placePieceUI, setGameText, setSubGameText, clearSubGameText, clearGameText}
 })();
 
 DisplayController.renderGrid();
