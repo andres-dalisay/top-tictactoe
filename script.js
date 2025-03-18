@@ -146,6 +146,9 @@ const GameController = (function () {
 
 const DisplayController = (function() {
     const container = document.querySelector(".grid-container");
+    const gameText = document.querySelector(".game-text");
+    const subGameText = document.querySelector(".sub-game-text");
+
     function renderGrid() {
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
@@ -159,7 +162,15 @@ const DisplayController = (function() {
         }
     }
 
-    return {renderGrid}
+    function setGameText(string) {
+        gameText.textContent = string;
+    }
+
+    function setSubGameText(string) {
+        subGameText.textContent = string;
+    }
+
+    return {renderGrid, setGameText, setSubGameText}
 })();
 
 DisplayController.renderGrid();
