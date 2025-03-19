@@ -83,6 +83,9 @@
 
 .start-menu h1 {
     font-size: 5rem;
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
 }
 
 .name-inputs {
@@ -176,6 +179,9 @@
 
 .cell span {
     font-size: 5rem;
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
 }
 
 .text-box {
@@ -190,6 +196,9 @@
     font-weight: 700;
     text-align: center;
     text-wrap: wrap;
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
 }
 
 footer {
