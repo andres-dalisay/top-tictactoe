@@ -188,7 +188,8 @@ const DisplayController = (function() {
     }
 
     function setupButtons() {
-        startGameBtn.addEventListener("click", function() {
+        startGameBtn.addEventListener("click", function(e) {
+            e.preventDefault();
             const nameOne = document.querySelector("#player-one-name").value || null;
             const nameTwo = document.querySelector("#player-two-name").value || null;
             gameArea.style.display = "grid";
