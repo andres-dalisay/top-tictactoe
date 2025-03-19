@@ -213,3 +213,11 @@ footer {
 footer a {
     text-decoration: none;
 }
+
+.hide {
+    display: none;
+}
+
+.disabled {
+    pointer-events: none;
+}

@@ -192,14 +192,14 @@ const DisplayController = (function() {
             e.preventDefault();
             const nameOne = document.querySelector("#player-one-name").value || null;
             const nameTwo = document.querySelector("#player-two-name").value || null;
-            gameArea.style.display = "grid";
+            gameArea.classList.remove("hide");
             renderGrid();
             GameController.setupGame(nameOne, nameTwo);
-            document.querySelector(".start-menu").style.display = "none";
+            document.querySelector(".start-menu").classList.add("hide");
         });
 
         restartBtn.addEventListener("click", () => {
-            document.querySelector(".start-menu").style.display = "flex";
+            document.querySelector(".start-menu").classList.remove("hide");
             clearGameText();
             clearSubGameText();
             container.textContent = "";
@@ -208,8 +208,8 @@ const DisplayController = (function() {
     }
 
     function setupMenu() {
-        gameArea.style.display = "none";
-        restartBtn.style.display = "none";
+        gameArea.classList.add("hide");
+        restartBtn.classList.add("hide");
     }
 
     function placePieceUI(player, idxX, idxY) {
@@ -217,10 +217,10 @@ const DisplayController = (function() {
     }
 
     function switchToGameOverState() {
-        restartBtn.style.display = "inline-block";
+        restartBtn.classList.remove("hide");
         const cells = document.querySelectorAll(".cell");
         cells.forEach((cell) => {
-            cell.style.pointerEvents = "none";
+            cell.classList.add("disabled");
         })
     }
 
