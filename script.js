@@ -164,6 +164,7 @@ const GameController = (function () {
 })();
 
 const DisplayController = (function() {
+    const gameArea = document.querySelector(".game-area");
     const container = document.querySelector(".grid-container");
     const gameText = document.querySelector(".game-text");
     const subGameText = document.querySelector(".sub-game-text");
@@ -189,7 +190,7 @@ const DisplayController = (function() {
         startGameBtn.addEventListener("click", function() {
             const nameOne = document.querySelector("#player-one-name").value || null;
             const nameTwo = document.querySelector("#player-two-name").value || null;
-            container.style.display = "grid";
+            gameArea.style.display = "grid";
             renderGrid();
             GameController.setupGame(nameOne, nameTwo);
             document.querySelector(".start-menu").style.display = "none";
@@ -205,7 +206,7 @@ const DisplayController = (function() {
     }
 
     function setupMenu() {
-        container.style.display = "none";
+        gameArea.style.display = "none";
         restartBtn.style.display = "none";
     }
 
