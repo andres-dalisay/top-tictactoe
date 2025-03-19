@@ -197,7 +197,7 @@ const DisplayController = (function() {
         });
 
         restartBtn.addEventListener("click", () => {
-            document.querySelector(".start-menu").style.display = "block";
+            document.querySelector(".start-menu").style.display = "flex";
             clearGameText();
             clearSubGameText();
             container.textContent = "";
