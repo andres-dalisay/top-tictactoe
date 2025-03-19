@@ -40,12 +40,37 @@
     isolation: isolate;
   }
 
+  .lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .lato-bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .lato-black {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .lato-regular-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  } 
+
 .display {
     position: absolute;
     inset: 0px;
     width: 100vw;
     margin: auto;
     align-content: center;
+    font-family: 'Lato', Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .start-menu {
@@ -87,6 +112,7 @@
 .input-group label {
     align-self: self-end;
     color:rgb(30, 30, 31);
+    font-style: italic;
 }
 
 .start-game-btn {
@@ -97,6 +123,7 @@
     font-size: 20px;
     border-radius: 5px;
     background-color: rgb(66, 143, 66);
+    font-weight: 900;
 }
 
 .start-game-btn:hover {
