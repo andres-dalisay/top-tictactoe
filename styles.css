@@ -141,6 +141,9 @@
 .start-game-btn:hover,
 .restart-btn:hover {
     background-color:rgb(75, 161, 75);
+    -webkit-transition: background-color 75ms linear;
+    -ms-transition: background-color 75ms linear;
+    transition: background-color 75ms linear;
 }
 
 .game-area {
@@ -166,6 +169,9 @@
 
 .cell:hover {
     background-color: rgb(238, 238, 238);
+    -webkit-transition: background-color 75ms linear;
+    -ms-transition: background-color 75ms linear;
+    transition: background-color 75ms linear;
 }
 
 .cell span {
