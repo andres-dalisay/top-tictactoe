@@ -39,6 +39,70 @@
   #root, #__next {
     isolation: isolate;
   }
+
+.display {
+    position: absolute;
+    inset: 0px;
+    width: 100vw;
+    margin: auto;
+    align-content: center;
+}
+
+.start-menu {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.input-group input {
+    height: 48px;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid rgb(165, 165, 165);
+    border-radius: 5px;
+    
+}
+
+.input-group input:focus {
+    outline: none;
+    border: 1px solid rgb(31, 31, 31);
+}
+
+.input-group label {
+    align-self: self-end;
+    color:rgb(30, 30, 31);
+}
+
+.start-game-btn {
+    grid-column: 1 / 3;
+    height: 64px;
+    border: 0px;
+    color: rgb(231, 244, 255);
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: rgb(66, 143, 66);
+}
+
+.start-game-btn:hover {
+    background-color:rgb(75, 161, 75);
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 100px);
