@@ -155,10 +155,17 @@
 
 .cell {
     border: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cell:hover {
     background-color: rgb(238, 238, 238);
+}
+
+.cell span {
+    font-size: 5rem;
 }
 
 .text-box {

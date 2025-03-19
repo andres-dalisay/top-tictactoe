@@ -181,6 +181,7 @@ const DisplayController = (function() {
                 cell.addEventListener("click", () => {
                     GameController.playTurn(i, j);
                 })
+                cell.append(document.createElement("span"));
                 container.append(cell);
             }
         }
@@ -211,7 +212,7 @@ const DisplayController = (function() {
     }
 
     function placePieceUI(player, idxX, idxY) {
-        document.querySelector(`.cell[data-x-pos="${idxX}"][data-y-pos="${idxY}"]`).textContent = player.piece;
+        document.querySelector(`.cell[data-x-pos="${idxX}"][data-y-pos="${idxY}"] span`).textContent = player.piece;
     }
 
     function switchToGameOverState() {
